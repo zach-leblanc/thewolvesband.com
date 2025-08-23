@@ -1,0 +1,160 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scrolling Credits — Fixed Background + Right Nav</title>
+  <meta name="description" content="Single-file demo: movie-credits style scrolling text over a fixed background, with a vertical right-side anchor navigation." />
+
+  <!-- Optional: Google Font for a cinematic vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <a href="#prologue" class="skip" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="page">
+    <main id="content" aria-label="Movie‑credits style content">
+      <div role="document">
+        <div aria-hidden="true" style="height: 12svh"></div>
+        <div class="sub fade-in">A place, a mood, a story</div>
+        <h1 class="fade-in" style="font: 700 clamp(34px,5.5vmin,68px) Cinzel,serif; letter-spacing:.16em; text-transform:uppercase; text-align:center; margin:0 0 10svh 0;">Le Grand Comptoir</h1>
+
+        <div class="credits">
+          <section id="prologue" class="anchor fade-in" aria-labelledby="t-prologue">
+            <h2 id="t-prologue">Prologue</h2>
+            <div class="sub">An introduction</div>
+            <p>
+              In the hush of dusk, doors open to a cabinet of stories. We trade the noise of the street for
+              glass, wood, and soft laughter. Take your time—here, evenings roll like end credits.
+            </p>
+          </section>
+
+          <section id="chapter-1" class="anchor fade-in" aria-labelledby="t-ch1">
+            <h2 id="t-ch1">Chapter I — Gatherings</h2>
+            <div class="sub">Friends, strangers, conspirators</div>
+            <p>
+              Tables become islands, and islands become maps. A candle charts the coastline of a conversation,
+              and every glass is a compass that finds true north in good company.
+            </p>
+          </section>
+
+          <section id="chapter-2" class="anchor fade-in" aria-labelledby="t-ch2">
+            <h2 id="t-ch2">Chapter II — Curiosities</h2>
+            <div class="sub">Cabinets and keepsakes</div>
+            <p>
+              Shelves lean with souvenirs and secret histories. A brass telescope points nowhere in particular;
+              the view, somehow, is perfect all the same.
+            </p>
+          </section>
+
+          <section id="interlude" class="anchor fade-in" aria-labelledby="t-interlude">
+            <h2 id="t-interlude">Interlude — The Drift</h2>
+            <div class="sub">Between songs, between sips</div>
+            <p>
+              The room sways on a slow tide of conversation. Time breathes out. You think of old postcards,
+              of arrivals that felt like endings and endings that felt like home.
+            </p>
+          </section>
+
+          <section id="chapter-3" class="anchor fade-in" aria-labelledby="t-ch3">
+            <h2 id="t-ch3">Chapter III — Revelry</h2>
+            <div class="sub">When the night remembers</div>
+            <p>
+              Footsteps learn the mosaic by heart. The chalkboard loses count. Someone laughs in a language
+              you don’t speak—and somehow you answer.
+            </p>
+          </section>
+
+          <section id="epilogue" class="anchor fade-in" aria-labelledby="t-epilogue">
+            <h2 id="t-epilogue">Epilogue — Until Next Time</h2>
+            <div class="sub">Closing lines</div>
+            <p>
+              We dim the lights and keep the stories. When you return, the room will be right where you left it,
+              listening.
+            </p>
+          </section>
+
+          <div aria-hidden="true" style="height: 26svh"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right-side navigation -->
+    <aside class="side-nav" aria-label="Section navigation">
+      <div class="brand">Le<br>Grand<br>Comptoir</div>
+
+      <nav class="navlist" id="nav">
+        <a href="#prologue"><span class="dot" aria-hidden="true"></span> Prologue</a>
+        <a href="#chapter-1"><span class="dot" aria-hidden="true"></span> Chapter I</a>
+        <a href="#chapter-2"><span class="dot" aria-hidden="true"></span> Chapter II</a>
+        <a href="#interlude"><span class="dot" aria-hidden="true"></span> Interlude</a>
+        <a href="#chapter-3"><span class="dot" aria-hidden="true"></span> Chapter III</a>
+        <a href="#epilogue"><span class="dot" aria-hidden="true"></span> Epilogue</a>
+      </nav>
+
+      <div class="footnote">
+        <strong>Tip</strong>: Replace the background with your own image by changing <code>--bg-image</code> in <em>:root</em>.
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // Scroll progress bar
+    const progressEl = document.getElementById('progress');
+    const updateProgress = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const pct = Math.max(0, Math.min(1, scrollTop / scrollHeight));
+      progressEl.style.width = (pct * 100) + '%';
+    };
+    document.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    // Reveal on view (credits fade-in)
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add('is-visible');
+      });
+    }, { threshold: .15 });
+
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.style.transitionDelay = (i * 40) + 'ms';
+      reveal.observe(el);
+    });
+
+    // Right-nav active state syncing with sections
+    const sections = Array.from(document.querySelectorAll('.anchor'));
+    const navLinks = Array.from(document.querySelectorAll('.navlist a'));
+
+    const byId = id => navLinks.find(a => a.getAttribute('href') === `#${id}`);
+
+    const highlight = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        const link = byId(id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.removeAttribute('aria-current'));
+          link.setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+    sections.forEach(sec => highlight.observe(sec));
+
+    // Improve in-page anchor focus visibility for keyboard users
+    navLinks.forEach(a => a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        // Allow smooth scroll then focus for a11y
+        setTimeout(() => target.querySelector('h2')?.focus?.(), 450);
+      }
+    }));
+  </script>
+</body>
+</html>
