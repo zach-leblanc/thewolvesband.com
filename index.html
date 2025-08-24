@@ -182,6 +182,30 @@ développé sur la scène montréalaise aux côtés de Thierry Larose et en tant
         setTimeout(() => target.querySelector('h2')?.focus?.(), 450);
       }
     }));
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const target = document.getElementById("actualites"); // your "Actualites" section
+  const root = document.documentElement; // <html>, where CSS variables live
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Switch to second background
+          root.style.setProperty("--bg-image", "var(--bg-image-2)");
+        } else {
+          // Switch back to the first background
+          root.style.setProperty("--bg-image", "var(--bg-image-1)");
+        }
+      });
+    },
+    { threshold: 0.5 } // triggers when 50% of the section is visible
+  );
+
+  if (target) {
+    observer.observe(target);
+  }
+});
   </script>
 </body>
 </html>
