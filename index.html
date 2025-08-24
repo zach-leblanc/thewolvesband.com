@@ -174,29 +174,30 @@ développé sur la scène montréalaise aux côtés de Thierry Larose et en tant
         setTimeout(() => target.querySelector('h2')?.focus?.(), 450);
       }
     }));
-
-    document.addEventListener("DOMContentLoaded", () => {
-  const target = document.getElementById("t-ch2"); // your "Actualites" section
-  const root = document.documentElement; // <html>, where CSS variables live
+document.addEventListener("DOMContentLoaded", () => {
+  const actualites = document.getElementById("t-ch2");
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Switch to second background
-          root.style.setProperty("--bg-image", "var(--bg-image-2)");
+          // Entered Actualites → switch to image 2
           document.body.classList.add("bg-alt");
         } else {
-          document.body.classList.remove("bg-alt");
+          // Only switch back if we've scrolled UP above Actualites
+          if (entry.boundingClientRect.top > 0) {
+            document.body.classList.remove("bg-alt");
+          }
         }
       });
     },
-    { threshold: 0.5 } // triggers when 50% of the section is visible
+    { threshold: 0.5 }
   );
 
-  if (target) {
-    observer.observe(target);
-  }
+  if (actualites) observer.observe(actualites);
+});
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
 });
   </script>
 </body>
