@@ -103,6 +103,10 @@ body::after {
   z-index: -1;
 }
 
+a {
+  color: --accent;
+}
+
 .page {
   display: grid;
   grid-template-columns: 70% 30% !important;
@@ -125,7 +129,6 @@ body::after {
   overflow: hidden;
 }
 .brand {
-  font-family: Cinzel, serif;
   font-size: 18px; letter-spacing: .08em; text-transform: uppercase;
   line-height: 1.2;
 }
@@ -164,7 +167,6 @@ main { min-height: 100svh; }
 }
 
 .credits h2 {
-  font-family: Cinzel, serif;
   font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   font-size: var(--title-size);
   margin: 0 0 10px 0;
