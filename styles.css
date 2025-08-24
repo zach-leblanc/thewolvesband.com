@@ -96,12 +96,23 @@ body::before {
   background-attachment: fixed;
   filter: saturate(.9) brightness(.9);
   z-index: -2;
+  opacity:1;
+   transition: opacity 2s ease-in-out;
 }
 body::after {
   content: "";
   position: fixed; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,.85), var(--backdrop-darken)), radial-gradient(1200px 600px at 70% 10%, rgba(0,0,0,.15), transparent 60%);
   z-index: -1;
+   transition: opacity 2s ease-in-out;
+   opacity:0;
+}
+body.bg-alt::after {
+  opacity: 1;
+}
+
+body.bg-alt::before {
+  opacity: 0;
 }
 
 a {

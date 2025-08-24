@@ -66,22 +66,22 @@ Grèce</p>
             <h2 id="t-interlude">Musiciens</h2>
             <div class="sub">5 musiciens : Deux guitares, basse, batterie, chant et clavier</div>
             <div style="display:flex;flex-direction:row;align-items:center;gap:24px;">
-              <img src="./blanche-placeholder.jpg" style="width:250px;height:250px;border-radius:200px;">
+              <img src="./blanche-placeholder.jpg" style="width:200px;height:200px;border-radius:200px;">
               <div style="display:flex;flex-direction:column;align-items:start;">
                 <h3>Blanche</h3>
-                <p>Chanteuse de formation Jazz classique et soul, se démarque pour un goût certain
+                <p style="text-align:justify;font-style:italic;">Chanteuse de formation Jazz classique et soul, se démarque pour un goût certain
 pour le rock des années 60’s et son cinéma, et est inspirée par les compositions aux
 variations contrastées. Elle est auteur des textes des titres, et a initié le rassemblement des
 membres du groupe.</p>
               </div>
             </div>
             <div style="display:flex;flex-direction:row;align-items:center;gap:24px;">
-              <img src="./zach-placeholder.jpg" style="width:250px;height:250px;border-radius:200px;">
               <div style="display:flex;flex-direction:column;align-items:start;">
                 <h3>Zach</h3>
-                <p>Zach est un guitariste de formation jazz/classique d’origine québécoise. Il s’est
+                <p style="text-align:justify;font-style:italic;">Zach est un guitariste de formation jazz/classique d’origine québécoise. Il s’est
 développé sur la scène montréalaise aux côtés de Thierry Larose et en tant que producteur indépendant.</p>
               </div>
+              <img src="./zach-placeholder.jpg" style="width:200px;height:200px;border-radius:200px;">
             </div>
           </section>
 
@@ -185,9 +185,9 @@ développé sur la scène montréalaise aux côtés de Thierry Larose et en tant
         if (entry.isIntersecting) {
           // Switch to second background
           root.style.setProperty("--bg-image", "var(--bg-image-2)");
+          document.body.classList.add("bg-alt");
         } else {
-          // Switch back to the first background
-          root.style.setProperty("--bg-image", "var(--bg-image-1)");
+          document.body.classList.remove("bg-alt");
         }
       });
     },
