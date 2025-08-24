@@ -175,19 +175,17 @@ développé sur la scène montréalaise aux côtés de Thierry Larose et en tant
       }
     }));
 document.addEventListener("DOMContentLoaded", () => {
-  const actualites = document.getElementById("t-ch2");
+  const actualites = document.getElementById("actualites");
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Entered Actualites → switch to image 2
+        if (entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight) {
+          // Scroll down into Actualites → show image 2
           document.body.classList.add("bg-alt");
-        } else {
-          // Only switch back if we've scrolled UP above Actualites
-          if (entry.boundingClientRect.top > 0) {
-            document.body.classList.remove("bg-alt");
-          }
+        } else if (entry.boundingClientRect.top > 0) {
+          // Scroll up above Actualites → revert to image 1
+          document.body.classList.remove("bg-alt");
         }
       });
     },

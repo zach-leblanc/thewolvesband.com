@@ -114,6 +114,12 @@ body.bg-alt::after {
 body.bg-alt::before {
   opacity: 0;
 }
+body::after.overlay,
+body::before.overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.55)),
+              radial-gradient(1200px 600px at 70% 10%, rgba(0,0,0,.15), transparent 60%);
+  z-index: -1;
+}
 
 section p {
   margin-bottom: 2rem; /* or whatever spacing feels good */
