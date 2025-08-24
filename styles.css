@@ -115,6 +115,15 @@ body.bg-alt::before {
   opacity: 0;
 }
 
+section p {
+  margin-bottom: 2rem; /* or whatever spacing feels good */
+  line-height: 1.6;    /* improves readability */
+}
+section p:last-child {
+  margin-bottom: 0;
+}
+
+
 a {
   color: var(--accent);
 }
