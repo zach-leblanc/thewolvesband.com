@@ -1,6 +1,7 @@
 
 :root {
-  --bg-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1976&auto=format&fit=crop'); /* replace with your own */
+  --bg-image: url('./desert.jpg');
+  --bg-image-two: url('./arch.jpg');
   --backdrop-darken: rgba(0,0,0,.55);
   --text: #f2f2f2;
   --muted: #c9c9c9;
