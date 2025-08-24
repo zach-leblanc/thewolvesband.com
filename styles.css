@@ -13,9 +13,9 @@
   --pad: clamp(16px, 2.2vmax, 36px);
   --gap: clamp(18px, 2.2vmax, 32px);
   --hgap: clamp(28px, 3vmax, 48px);
-  --credit-size: clamp(18px, 2.6vmin + .6vw, 24px);
+  --credit-size: clamp(14px);
   --title-size: clamp(24px, 3.6vmin + .6vw, 40px);
-  --small: clamp(12px, 1.4vmin + .4vw, 14px);
+  --small: clamp(12px);
   --scrollbar: rgba(255,255,255,.25);
 }
 
