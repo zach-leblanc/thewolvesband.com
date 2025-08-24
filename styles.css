@@ -19,36 +19,58 @@
 }
 
 @font-face {
-  font-family: 'Souvenir';
-  src: url('./Souvenir.ttf') format('truetype');
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
-/* Bold */
 @font-face {
-  font-family: 'Souvenir';
-  src: url('./SouvenirB.ttf') format('truetype');
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-Ultrabold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-
-/* Bold Italic */
 @font-face {
-  font-family: 'Souvenir';
-  src: url('./SouvenirBI.ttf') format('truetype');
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-Ultralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-UltraboldItalic.otf') format('opentype');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
-
-/* Italic */
 @font-face {
-  font-family: 'Souvenir';
-  src: url('./SouvenirI.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'PPLettraMono';
+  src: url('./lettre/PPLettraMono-UltralightItalic.otf') format('opentype');
+  font-weight: 200;
   font-style: italic;
   font-display: swap;
 }
@@ -58,7 +80,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   color: var(--text);
-font-family: 'Souvenir', Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+font-family: 'PPLettraMono', Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   line-height: 1.6;
   background: #000;
   min-height: 100svh;
