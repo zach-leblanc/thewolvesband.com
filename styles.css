@@ -17,12 +17,47 @@
   --scrollbar: rgba(255,255,255,.25);
 }
 
+@font-face {
+  font-family: 'Souvenir';
+  src: url('./Souvenir.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'Souvenir';
+  src: url('./SouvenirB.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold Italic */
+@font-face {
+  font-family: 'Souvenir';
+  src: url('./SouvenirBI.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Italic */
+@font-face {
+  font-family: 'Souvenir';
+  src: url('./SouvenirI.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   color: var(--text);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+font-family: 'Souvenir', Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   line-height: 1.6;
   background: #000;
   min-height: 100svh;
