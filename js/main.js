@@ -9,23 +9,19 @@ const updateProgress = () => {
 document.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
-// Fade-in reveal
+// Reveal on view
 const reveal = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) e.target.classList.add('is-visible');
-  });
+  entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
 }, { threshold: .15 });
-
 document.querySelectorAll('.fade-in').forEach((el, i) => {
   el.style.transitionDelay = (i * 40) + 'ms';
   reveal.observe(el);
 });
 
-// Right-nav active state
+// Right-nav active
 const sections = Array.from(document.querySelectorAll('.anchor'));
 const navLinks = Array.from(document.querySelectorAll('.navlist a'));
 const byId = id => navLinks.find(a => a.getAttribute('href') === `#${id}`);
-
 const highlight = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     const id = entry.target.id;
@@ -37,37 +33,33 @@ const highlight = new IntersectionObserver((entries) => {
     }
   });
 }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
-
 sections.forEach(sec => highlight.observe(sec));
 
-// Smooth focus on anchor click
-navLinks.forEach(a => a.addEventListener('click', () => {
+// Smooth focus on nav click
+navLinks.forEach(a => a.addEventListener('click', (e) => {
   const id = a.getAttribute('href').slice(1);
   const target = document.getElementById(id);
   if (target) setTimeout(() => target.querySelector('h2')?.focus?.(), 450);
 }));
 
-// Background image toggle for Actualites
+// Background change at Actualités
 document.addEventListener("DOMContentLoaded", () => {
   const actualites = document.getElementById("Actualites");
+  if (!actualites) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight) {
           document.body.classList.add("bg-alt");
         } else if (entry.boundingClientRect.top > 0) {
           document.body.classList.remove("bg-alt");
         }
       });
-    },
-    { threshold: 0.5 }
+    }, { threshold: 0.5 }
   );
-
-  if (actualites) observer.observe(actualites);
+  observer.observe(actualites);
 });
 
-// Force scroll to top on load
-window.addEventListener("load", () => {
-  window.scrollTo(0, 0);
-});
+// Scroll to top on load
+window.addEventListener("load", () => { window.scrollTo(0, 0); });
